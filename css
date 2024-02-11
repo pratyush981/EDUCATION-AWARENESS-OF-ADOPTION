@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decentralized Education Platform</title>
+  <style>
+    /* Reset styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    nav {
+      margin-bottom: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    nav ul li:last-child {
+      margin-right: 0;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffc107;
+    }
+
+    .course-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .course-item {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .course-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .course-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .course-description {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .course-price {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .enroll-button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .enroll-button:hover {
+      background-color: #0056b3;
+    }
+
+    .enroll-button:active {
+      transform: translateY(2px);
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Decentralized Education Platform</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <h2>Explore Courses</h2>
+    <ul class="course-list">
+      <li class="course-item">
+        <div class="course-title">Quantum Computing for Beginners</div>
+        <div class="course-description">Dive into the fascinating world of quantum computing, where bits can exist in multiple states simultaneously. Learn about qubits, quantum gates, and quantum algorithms, and explore how quantum computing is revolutionizing fields like cryptography and drug discovery.</div>
+        <div class="course-price">Price: Free</div>
+        <button class="enroll-button">Enroll Now</button>
+      </li>
+      <li class="course-item">
+        <div class="course-title">The Art of Cybersecurity</div>
+        <div class="course-description">Embark on a journey to master the art of cybersecurity and defend against digital threats. Explore topics such as encryption, network security, and ethical hacking, and learn how to protect yourself and others in the ever-evolving landscape of cyberspace.</div>
+        <div class="course-price">Price: Free</div>
+        <button class="enroll-button">Enroll Now</button>
+      </li>
+      <!-- More course items -->
+    </ul>
+  </div>
+  <footer>
+    <div class="container">
+      <p>Made by Pratyush Jha for Devpost</p>
+    </div>
+  </footer>
+</body>
+</html>
