@@ -1,0 +1,63 @@
+import React, { useState, useEffect } from "react";
+import Web3 from "web3";
+import EducationPlatformContract from "./contracts/EducationPlatform.json";
+
+function App() {
+  const [web3, setWeb3] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [contract, setContract] = useState(null);
+  const [courses, setCourses] = useState([]);
+  const [newCourseTitle, setNewCourseTitle] = useState("");
+  const [newCourseDescription, setNewCourseDescription] = useState("");
+  const [newCoursePrice, setNewCoursePrice] = useState(0);
+
+  useEffect(() => {
+    async function init() {
+      const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+      setWeb3(web3);
+      const accounts = await web3.eth.getAccounts();
+      setAccounts(accounts);
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = EducationPlatformContract.networks[networkId];
+      const contract = new web3.eth.Contract(
+        EducationPlatformContract.abi,
+        deployedNetwork && deployedNetwork.address
+      );
+      setContract(contract);
+      const coursesCount = await contract.methods.getCoursesCount().call();
+      const courses = [];
+      for (let i = 0; i < coursesCount; i++) {
+        const [title, description, price, teacher] = await contract.methods.getCourse(i).call();
+        courses.push({ title, description, price, teacher, id: i });
+      }
+      setCourses(courses);
+    }
+    init();
+  }, []);
+
+  async function handleCreateCourse() {
+    await contract.methods.createCourse(newCourseTitle, newCourseDescription, newCoursePrice).send({ from: accounts[0] });
+    const coursesCount = await contract.methods.getCoursesCount().call();
+    const [title, description, price, teacher] = await contract.methods.getCourse(coursesCount - 1).call();
+    setCourses([...courses, { title, description, price, teacher, id: coursesCount - 1 }]);
+    setNewCourseTitle("");
+    setNewCourseDescription("");
+    setNewCoursePrice(0);
+  }
+
+  return (
+    <div>
+      <h1>Education Platform</h1>
+      <h2>Courses:</h2>
+      <ul>
+        {courses.map((course) => (
+          <li key={course.id}>
+            <div>Title: {course.title}</div>
+            <div>Description: {course.description}</div>
+            <div>Price: {web3 && web3.utils.fromWei(course.price.toString(), "ether")} ETH</div>
+            <div>Teacher: {course.teacher}</div>
+          </li>
+        ))}
+      </ul>
+      <h2>Create Course:</h2>
+      <input type="text" value={newCourseTitle} onChange={(e) => setNewCourseTitle(e.target.value)} placeholder
